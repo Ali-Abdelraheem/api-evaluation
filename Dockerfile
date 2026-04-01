@@ -3,7 +3,8 @@ FROM atendai/evolution-api:latest
 USER root
 RUN apk add --no-cache redis
 
-RUN printf '#!/bin/sh\nredis-server --daemonize yes\nsleep 2\nexec node dist/main\n' > /start.sh && chmod +x /start.sh
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 ENV SERVER_PORT=8080
 ENV PORT=8080
@@ -20,3 +21,9 @@ ENV CACHE_REDIS_PREFIX_KEY=evolution
 EXPOSE 8080
 
 CMD ["/start.sh"]
+```
+
+**الـ repo المفروض يبقى فيه ملفين:**
+```
+├── Dockerfile
+└── start.sh
