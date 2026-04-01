@@ -1,7 +1,13 @@
 #!/bin/sh
-# تشغيل ريديس في الخلفية
+
+# 1. تشغيل ريديس في الخلفية
+echo "Starting Redis..."
 redis-server --daemonize yes
-# الانتظار قليلاً للتأكد من عمله
-sleep 2
-# تشغيل التطبيق الأساسي
-node dist/src/main.js
+
+# 2. الانتظار للتأكد من أن ريديس استيقظ
+sleep 3
+
+# 3. تشغيل التطبيق مع التأكد من المسار
+echo "Starting Evolution API..."
+# جربنا dist/src/main.js - لو فشل جرب dist/main.js
+exec node dist/src/main.js
