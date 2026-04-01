@@ -1,8 +1,6 @@
 FROM atendai/evolution-api:latest
 
-# تعريف المنفذ بشكل صريح
+ENV SERVER_PORT=8080
 ENV PORT=8080
-EXPOSE 8080
 
-# تشغيل التطبيق مباشرة
-CMD ["node", "dist/src/main.js"]
+EXPOSE 8080
