@@ -1,14 +1,9 @@
 FROM atendai/evolution-api:latest
 
-# تثبيت Redis
 USER root
-RUN apt-get update && apt-get install -y redis-server && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache redis
 
-# startup script
-RUN echo '#!/bin/bash\n\
-redis-server --daemonize yes\n\
-sleep 2\n\
-exec node dist/main' > /start.sh && chmod +x /start.sh
+RUN printf '#!/bin/sh\nredis-server --daemonize yes\nsleep 2\nexec node dist/main\n' > /start.sh && chmod +x /start.sh
 
 ENV SERVER_PORT=8080
 ENV PORT=8080
