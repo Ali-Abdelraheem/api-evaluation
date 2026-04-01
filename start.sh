@@ -1,4 +1,7 @@
 #!/bin/sh
+# تشغيل ريديس في الخلفية
 redis-server --daemonize yes
+# الانتظار قليلاً للتأكد من عمله
 sleep 2
-exec node dist/main
+# تشغيل التطبيق الأساسي
+node dist/src/main.js
